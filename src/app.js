@@ -10,8 +10,8 @@ class App {
         this.express.use(express.json());
     }
     routes(){
-        this.express.use('/', )
-        this.express.use('/', )
+        this.express.use('/', );
+        this.express.use('/', );
     }
 }
  module.exports = new App().express;

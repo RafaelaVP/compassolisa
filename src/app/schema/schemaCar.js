@@ -1,5 +1,4 @@
-const conectdb = require('../../infra/database/connectionMongo.js');
-const mongoose = require('mongoose') 
+const mongoose = require('mongoose')
 
 
 const Cars = mongoose.Schema({
@@ -12,16 +11,16 @@ const Cars = mongoose.Schema({
       required: true
     },
     ano:{
-        type:Date,
-        required:true
+        type: String,
+        required: true
     },
     acessorios:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     descricao:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     quantidadePassageiros:{
         type:Number,
@@ -32,4 +31,3 @@ const Cars = mongoose.Schema({
   })
 
   module.exports = mongoose.model('cars' , Cars)
- 
