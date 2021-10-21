@@ -1,5 +1,6 @@
 const express = require('express');
-const router = require('./routes')
+const router = require('./routes');
+const carRouter = require('./routes/carRouter');
 require('./infra/database/connectionMongo');
 
 class App {
@@ -16,6 +17,8 @@ class App {
 
   routes() {
     router(this.server)
+    this.server.use('/car', carRouter )
+
   }
 
 }
