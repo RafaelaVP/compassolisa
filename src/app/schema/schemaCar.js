@@ -2,27 +2,27 @@ const mongoose = require('mongoose')
 
 
 const Cars = mongoose.Schema({
-    modelo: {
+    model: {
       type: String,
       required: true
     },
-    cor: {
+    color: {
       type: String,
       required: true
     },
-    ano:{
+    year:{
         type: String,
         required: true
     },
-    acessorios:{
+    accessories:{
         type: String,
         required: true
     },
-    descricao:{
+    description:{
         type: String,
         required: true
     },
-    quantidadePassageiros:{
+    numberOfPassengers:{
         type:Number,
         required:true
     }
