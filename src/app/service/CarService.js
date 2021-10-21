@@ -1,9 +1,9 @@
 const CarRepository = require('../repository/CarRepository');
 
 class CarService {
-  async getAll(search) {
+  async listAll(search) {
     try {
-      const result = await CarRepository.find(search);
+      const result = await CarRepository.findByParams(search);
       return result;
     } catch (error) {
       return error;
@@ -17,9 +17,9 @@ class CarService {
           return error;
       }
    }
-   async update(_id) {
+   async update(_id, payload) {
        try {
-           const result = await CarRepository.findByIdAndUpdate(_id, payload)
+           const result = await CarRepository.update(_id, payload)
            return result
        } catch (error) {
            return error;
@@ -27,7 +27,7 @@ class CarService {
    }
    async delete(id) {
        try {
-           const result = await CarRepository.findOneAndDelete(id)
+           const result = await CarRepository.delete(id)
        } catch (error) {
            return error;
        }
