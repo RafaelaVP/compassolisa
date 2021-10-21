@@ -2,17 +2,17 @@ const { findOneAndUpdate } = require('../schema/schemaCar');
 const CarSchema = require('../schema/schemaCar');
 
 class CarRepository  {
-  async getAll(search) {
+  async findByParams(search) {
     return CarSchema.find(search);
   }
   async create(payload) {
     return CarSchema.create(payload)
   }
-  async update(_id){
+  async update(_id, payload){
       return CarSchema.findByIdAndUpdate(_id, payload)
   }
   async delete(id){
-      return CarSchema.findOneAndDelete(id)
+      return CarSchema.findByIdAndDelete(id)
   }
 }
 

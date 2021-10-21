@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const user = require('./carRouter')
+const car = require('./carRouter')
 
 module.exports = server => {
   server.use((req, res, next) => {
-    user(server, new Router());
+    car(server, new Router());
     next();
   });
 }

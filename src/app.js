@@ -16,11 +16,8 @@ class App {
   }
 
   routes() {
-    router(this.server)
-    this.server.use('/car', carRouter )
-
+    router(this.server);
   }
-
 }
 
 module.exports = new App().server;
