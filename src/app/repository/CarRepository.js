@@ -5,16 +5,14 @@ class CarRepository  {
   async getAll(search) {
     return CarSchema.find(search);
   }
-  async create(post) {
-    return CarSchema.create(post)
+  async create(payload) {
+    return CarSchema.create(payload)
   }
-  async patch(_id){
-      return CarSchema.findByIdAndUpdate(_id, update)
-
-
+  async update(_id){
+      return CarSchema.findByIdAndUpdate(_id, payload)
   }
-  async delete(fim){
-      return CarSchema.findOneAndDelete(fim)
+  async delete(id){
+      return CarSchema.findOneAndDelete(id)
   }
 }
 
