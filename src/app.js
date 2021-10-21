@@ -1,17 +1,23 @@
-const express = require('express')
-require('./infra/database/connectionMongo')
+const express = require('express');
+const router = require('./routes')
+require('./infra/database/connectionMongo');
+
 class App {
-    constructor() {
-        this.express = express();
-        this.middleware();
-        this.routes();
-    }
-    middleware(){
-        this.express.use(express.json());
-    }
-    routes(){
-        this.express.use('/', );
-        this.express.use('/', );
-    }
+
+  constructor() {
+    this.server = express();
+    this.middlewares();
+    this.routes();
+  }
+
+  middlewares() {
+    this.server.use(express.json());
+  }
+
+  routes() {
+    router(this.server)
+  }
+
 }
- module.exports = new App().express;
+
+module.exports = new App().server;
