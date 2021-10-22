@@ -25,9 +25,9 @@ class CarService {
            return error;
        }
    }
-   async delete(id) {
+   async delete(_id) {
        try {
-           const result = await CarRepository.delete(id)
+           return await CarRepository.delete(_id)
        } catch (error) {
            return error;
        }

@@ -1,8 +1,8 @@
 const CarController = require('../app/controller/CarController');
-const createValidation = require('../app/validation/create');
 
-module.exports = (server, routes, prefix = '/') => {
-  routes.get('/' , CarController.getAll);
-  routes.post('/', CarController.create)
+module.exports = (server, routes, prefix = '/api/v1/car') => {
+  routes.get('/', CarController.getAll);
+  routes.post('/', CarController.create);
+  routes.delete('/:id', CarController.delete)
   server.use(prefix, routes);
-}
+};
