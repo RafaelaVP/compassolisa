@@ -12,16 +12,18 @@ class CarController {
   }
 
   async update(req, res) {
-    const result = await CarService.update(req.body.params);
+    const {id} = req.params
+    const update = req.body
+    const result = await CarService.update(id, update)
     return res.status(201).json(result);
   }
 
   async delete(req, res) {
       try {
-          const {id} = req.params
+         const {id} = req.params
          const result = await CarService.delete(id);
          console.log(result)
-        return res.status(204).send();
+        return res.status(204).json();
       } catch (error) {
           return res.status(400).json({
               message:'no'
@@ -30,3 +32,14 @@ class CarController {
   }
 }
 module.exports = new CarController();
+
+
+
+//const update = {
+   // modelo:modelo,
+    //cor:cor,
+    //ano:ano,
+    //acessorios:acessorios,
+   // descricao:descricao,
+   // numeroPassageiros:numeroPassageiros
+//}

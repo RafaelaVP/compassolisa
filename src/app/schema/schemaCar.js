@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Cars = mongoose.Schema({
-  modelo: {
+    modelo: {
     type: String,
     required: true,
   },
@@ -13,22 +13,24 @@ const Cars = mongoose.Schema({
     type: String,
     required: true,
   },
-  acessorios: {
+  acessorios:[ {
     type: String,
     required: true,
-  },
-  descricao: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:"descricao",
-    required: true,
-  },
+  }],
   numeroPassageiros: {
     type: Number,
     required: true,
   },
 
 }, {
-  timestamps: true,
+    timestamps: true,
 });
 
 module.exports = mongoose.model('cars', Cars);
+
+
+//descricao: {
+  //  type: mongoose.Schema.Types.ObjectId,
+   // ref:"descricao",
+   // required: true,
+ // },

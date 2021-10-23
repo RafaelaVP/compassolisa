@@ -6,9 +6,9 @@ class CarRepository extends Repository  {
   constructor(){
     super(schemaCar)
   }
-  async findByParams(search) {
-    return this._schema.find(search).populate('descricao',['descricao'])
-  }
+ // async findByParams(search) {
+   // return this._schema.find(search).populate('descricao',['descricao'])
+  //}
 }
 
 

@@ -1,9 +1,9 @@
-const DescriptionRepository = require('../repository/DescriptionRepository');
+const ClientRepository = require('../repository/ClientRepository');
 
-class DescriptionService {
+class ClientService {
   async listAll(search) {
     try {
-      const result = await DescriptionRepository.findByParams(search);
+      const result = await ClientRepository.findByParams(search);
       return result;
     } catch (error) {
       return error;
@@ -11,7 +11,7 @@ class DescriptionService {
   }
   async create(payload) {
       try {
-          const result = await DescriptionRepository.create(payload);
+          const result = await ClientRepository.create(payload);
           return result;
       } catch (error) {
           return error;
@@ -19,7 +19,7 @@ class DescriptionService {
    }
    async update(_id, payload) {
        try {
-           const result = await DescriptionRepository.update(_id, payload)
+           const result = await ClientRepository.update(_id, payload)
            return result
        } catch (error) {
            return error;
@@ -27,11 +27,11 @@ class DescriptionService {
    }
    async delete(id) {
        try {
-           const result = await DescriptionRepository.delete(id)
+           const result = await ClientRepository.delete(id)
        } catch (error) {
            return error;
        }
    }
 }
 
-module.exports = new DescriptionService();
+module.exports = new ClientService();
