@@ -9,10 +9,10 @@ const Clients = mongoose.Schema({
      type:String,
      required:true
     },
-    data_nascimente:{
-     type: Date,
-     required:true
-    },
+   // data_nascimente:{
+    // type: Date,
+    // required:true
+    //},
     email:{
      type:String,
      required:true
@@ -21,10 +21,10 @@ const Clients = mongoose.Schema({
      type:String,
      required:true
     },
-    habilitado:{
-     type:String,
-     required:true
-    }
+   // habilitado:{
+    // type:String,
+    // required:true
+  //  }
 }, {
   timestamps: true,
 });

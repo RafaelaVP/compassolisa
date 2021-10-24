@@ -13,11 +13,11 @@ const Cars = mongoose.Schema({
     type: String,
     required: true,
   },
-  acessorios:[ {
-    type: String,
+  acessorios:{
+    type: Array,
     required: true,
-  }],
-  numeroPassageiros: {
+  },
+  quantidadePassageiros: {
     type: Number,
     required: true,
   },
