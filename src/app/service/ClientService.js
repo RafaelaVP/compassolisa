@@ -1,7 +1,7 @@
 const ClientRepository = require('../repository/ClientRepository');
 
 class ClientService {
-  async listAll(search) {
+  async getAll(search) {
     try {
       const result = await ClientRepository.findByParams(search);
       return result;

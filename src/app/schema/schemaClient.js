@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const Clients = mongoose.Schema({
+
+const User = mongoose.Schema({
     nome: {
      type: String,
      required: true,
@@ -9,24 +10,31 @@ const Clients = mongoose.Schema({
      type:String,
      required:true
     },
-   // data_nascimente:{
-    // type: Date,
-    // required:true
-    //},
+     data_nascimento:{
+     type: String,
+     required:true
+    },
     email:{
      type:String,
-     required:true
+     required:true,
+     unique:true,
+     lowercase:true,
+     trim:true
     },
     senha:{
      type:String,
-     required:true
+     required:true,
+     select:false,
+     
     },
-   // habilitado:{
-    // type:String,
-    // required:true
-  //  }
+    habilitado:{
+    type:String,
+    enum:["sim","não"],
+    default:"sim",
+
+    }
 }, {
   timestamps: true,
 });
 
-module.exports = mongoose.model('clients',Clients);
+module.exports = mongoose.model('user',User);
