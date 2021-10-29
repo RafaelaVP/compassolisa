@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require ('mongoose-paginate-v2')
 
 const Cars = mongoose.Schema({
     modelo: {
@@ -10,12 +11,16 @@ const Cars = mongoose.Schema({
     required: true,
   },
   ano: {
-    type: String,
+    type: Number,
     required: true,
   },
   acessorios:{
     type: Array,
     required: true,
+    descricao:[{
+      type: String,
+      required:true
+    }]
   },
   quantidadePassageiros: {
     type: Number,
@@ -24,7 +29,10 @@ const Cars = mongoose.Schema({
 
 }, {
     timestamps: true,
+    select:false
 });
+
+Cars.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('cars', Cars);
 

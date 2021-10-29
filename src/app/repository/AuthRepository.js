@@ -7,7 +7,7 @@ class AuthRepository extends Repository  {
   }
   async findByEmail (search) {
       const{email} = search
-       return await schemaClient.findOne({email}).select('+senha')
+      return await schemaClient.findOne({email}).select('+senha')
   }
 }
 

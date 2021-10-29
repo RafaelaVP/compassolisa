@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require ('mongoose-paginate-v2')
 
 
-const User = mongoose.Schema({
+const Clients = mongoose.Schema({
     nome: {
      type: String,
      required: true,
     },
     cpf:{
      type:String,
-     required:true
+     required:true,
+     unique:true
     },
      data_nascimento:{
      type: String,
@@ -37,4 +39,7 @@ const User = mongoose.Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model('user',User);
+Clients.plugin(mongoosePaginate);
+
+
+module.exports = mongoose.model('user',Clients);
