@@ -2,6 +2,7 @@ const CarController = require('../app/controller/CarController');
 const Vallidation = require('../app/validation/carValidation/create')
 const VallidCarId = require('../app/validation/carValidation/getById')
 const VallidUp = require('../app/validation/carValidation/update')
+
 module.exports = (server, routes, prefix = '/api/v1/car') => {
   routes.get('/', CarController.getAll);
   routes.get('/:id',VallidCarId , CarController.getById)

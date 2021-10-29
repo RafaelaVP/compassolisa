@@ -36,7 +36,7 @@ const Clients = mongoose.Schema({
 
     }
 }, {
-  timestamps: true,
+  timestamps: false,
 });
 
 Clients.plugin(mongoosePaginate);

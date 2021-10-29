@@ -4,7 +4,11 @@ class Repository  {
         this._schema = schema
     }
   async findByParams(search) {
-    return this._schema.paginate(search, {limit:100});
+    const {limit=100, offset=1, ...query} = search
+    return this._schema.paginate({query},{
+       limit:Number(limit)
+      , offset:Number(offset)
+    });
   }
   async create(payload) {
     return this._schema.create(payload)

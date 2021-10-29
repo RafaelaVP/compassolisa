@@ -29,8 +29,8 @@ const Cars = mongoose.Schema({
 
 }, {
     timestamps: true,
-    select:false
-});
+    
+})
 
 Cars.plugin(mongoosePaginate);
 

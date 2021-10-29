@@ -7,7 +7,7 @@ module.exports = async(req, res, next) => {
               .min(4)
               .max(10)
               .required(), 
-            cpf: Joi.string().min(11).max(14).required(),
+            cpf: Joi.string().min(14).max(14).required(),
             data_nascimento:Joi.string(),
             email:Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),
             senha:Joi.string().min(6).required(),

@@ -9,10 +9,14 @@ class ClientController {
   }
 
   async create(req, res) {
-    const result = await ClientService.create(req.body);
-    //const {senha, ...user} = result.toObject()
+    try {
+      const result = await ClientService.create(req.body);
+      return res.status(201).json(result);
+    } catch (error) {
+      return res.status(400).json({message:error.message })
 
-    return res.status(201).json(result);
+    }
+    
   }
   async update(req, res) {
     try {
