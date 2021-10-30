@@ -1,11 +1,12 @@
-const schemaClient = require('../schema/schemaClient');
 const ClientService = require('../service/ClientService');
-const bcrypt = require('bcrypt');
+const Serialize = require('../serialize/clientSerialize')
+
 
 class ClientController {
   async getAll(req, res) {
     const result = await ClientService.getAll(req.query)
-    return res.status(200).json(result);
+    const paginatedSerialize = Serialize(result)
+    return res.status(200).json(paginatedSerialize);
   }
 
   async create(req, res) {

@@ -1,10 +1,11 @@
 const CarService = require('../service/CarService');
-
+const Serialize = require('../serialize/carSerializer')
 class CarController {
   async getAll(req, res) {
     try {
       const result = await CarService.listAll(req.query)
-      return res.status(200).json(result);
+      const paginatedSerialize = Serialize(result)
+      return res.status(200).json(paginatedSerialize);
     } catch (error) {
       return error
     }      
