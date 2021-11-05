@@ -19,8 +19,8 @@ const Clients = mongoose.Schema({
     email:{
      type:String,
      required:true,
-     unique:true,
      lowercase:true,
+     unique:true,
      trim:true
     },
     senha:{
@@ -32,7 +32,7 @@ const Clients = mongoose.Schema({
     habilitado:{
     type:String,
     enum:["sim","não"],
-    default:"sim",
+    required:true
 
     }
 }, {

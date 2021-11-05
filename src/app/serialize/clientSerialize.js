@@ -29,4 +29,4 @@ const serialize = ({
       }
   }
 
-  module.exports = paginatedSerialize
+  module.exports = {paginatedSerialize, serialize}

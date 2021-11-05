@@ -3,20 +3,13 @@ const CarRepository = require('../repository/CarRepository');
 
 class CarService {
   async listAll(search) {
-    try {
-      const result = await CarRepository.findByParams(search);
-      return result;
-    } catch (error) {
-      return error;
-    }
+    const result = await CarRepository.findByParams(search);
+    return result;    
   }
   async create(payload) {
-      try {
-          const result = await CarRepository.create(payload);
-          return result;
-      } catch (error) {
-          return error;
-      }
+    const result = await CarRepository.create(payload);
+    return result;
+      
    }
 
  async update(_id, payload) { 

@@ -5,14 +5,14 @@ module.exports = async(req, res, next) => {
         const schema = Joi.object({
             nome:Joi.string()
               .min(4)
-              .max(50)
-              .required(), 
-            cpf: Joi.string().min(11).max(14).required(),
+              .max(50),
+               
+            cpf: Joi.string().min(11).max(14),
             data_nascimento:Joi.string(),
             email:Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),
-            senha:Joi.string().min(6).required(),
-            habilitado: Joi.string()
-
+            senha:Joi.string().min(6),
+            habilitado: Joi.string.min(3).max(3)
+            
         });
 
         const{error} = await schema.validate(req.body,{abortEarly:false});

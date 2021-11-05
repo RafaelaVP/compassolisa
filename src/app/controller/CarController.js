@@ -1,11 +1,11 @@
 const CarService = require('../service/CarService');
-const Serialize = require('../serialize/carSerializer')
+const {serialize, paginatedSerialize} = require('../serialize/carSerializer')
+
 class CarController {
   async getAll(req, res) {
     try {
       const result = await CarService.listAll(req.query)
-      const paginatedSerialize = Serialize(result)
-      return res.status(200).json(paginatedSerialize);
+      return res.status(200).json(paginatedSerialize(result));
     } catch (error) {
       return error
     }      
@@ -13,7 +13,7 @@ class CarController {
   async create(req, res) {
     try {
       const result = await CarService.create(req.body);
-      return res.status(201).json(result);
+      return res.status(201).json(serialize(result));
     } catch (error) {
       return res.status(400).json(error)    
     }  
@@ -23,8 +23,7 @@ class CarController {
       const {id} = req.params
       const update = req.body
       const result = await CarService.update(id, update)
-      console.log(result)
-      return res.status(200).json(result);
+      return res.status(200).json(serialize(result));
     } catch (error) {
       return res.status(400).json({message:error.message })
       }
@@ -42,8 +41,8 @@ class CarController {
   async getById( req,res) {
     try {
       const{id} = req.params
-      const result = await CarService.getById(id)
-      return res.status(200).json(result)
+      const result = await CarService.getById(id);
+      return res.status(200).json(serialize(result));
     } catch (error) {
       return res.status(400).json({message:error.message})
     }
@@ -52,12 +51,3 @@ class CarController {
 module.exports = new CarController();
 
 
-
-//const update = {
-   // modelo:modelo,
-    //cor:cor,
-    //ano:ano,
-    //acessorios:acessorios,
-   // descricao:descricao,
-   // numeroPassageiros:numeroPassageiros
-//}

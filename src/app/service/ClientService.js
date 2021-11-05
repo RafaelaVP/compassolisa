@@ -1,13 +1,13 @@
 const ClientRepository = require('../repository/ClientRepository');
-const { cpf } = require('cpf-cnpj-validator');
 const moment = require('moment')
+const cpfValid = require('../../helper/cpf')
 
 class ClientService {
   async getAll(search) {
     return await ClientRepository.findByParams(search);
   }
   async create(payload) {
-        const Valid = this.validCPF(payload.cpf)
+        const Valid = cpfValid(payload.cpf)
         payload.cpf = Valid
         const date = this.validDataNascimento(payload.data_nascimento)
         if(typeof date !== 'undefined'){
@@ -30,13 +30,7 @@ class ClientService {
   if(!result) throw Error("Não encontrado usuário")
   return result
  }
- validCPF(userCpf) {
-   const cpfValid = cpf.isValid(userCpf)
-   if(cpfValid === true)  {
-     const trueCpf = cpf.format(userCpf)
-     return trueCpf
-   } throw new Error("Não é válido")
- }
+
  validDataNascimento(userDate) {
   const formatData = moment(userDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
   const dataT = moment().diff(formatData, 'years');

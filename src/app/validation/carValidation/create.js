@@ -10,7 +10,7 @@ module.exports = async(req, res, next) => {
             .integer()
             .min(1950)
             .max(2022),
-            acessorios:Joi.array().unique().forbidden().min(1).items({descricao:Joi.string().min(1).required()}).required(),
+            acessorios:Joi.array().unique().min(1).items({descricao:Joi.string().min(1).required()}).required(),
             quantidadePassageiros:Joi.number().min(1).required()
         });
 
@@ -18,6 +18,15 @@ module.exports = async(req, res, next) => {
         if(error) throw error  
         return next()
     } catch (error) {
-        return res.status(400).json(error)        
+        const erros = []
+        const {details} = error
+        details.forEach(t => {
+            erros.push({
+                description: t.path[0],
+                name: t.message
+            })
+        })
+        return res.status(400).json(erros)
+                   
     }
 }

@@ -1,20 +1,19 @@
 const ClientService = require('../service/ClientService');
-const Serialize = require('../serialize/clientSerialize')
+const {serialize, paginatedSerialize} = require('../serialize/clientSerialize')
 
 
 class ClientController {
   async getAll(req, res) {
     const result = await ClientService.getAll(req.query)
-    const paginatedSerialize = Serialize(result)
-    return res.status(200).json(paginatedSerialize);
+    return res.status(200).json( paginatedSerialize(result));
   }
 
   async create(req, res) {
     try {
       const result = await ClientService.create(req.body);
-      return res.status(201).json(result);
+      return res.status(201).json(serialize(result));
     } catch (error) {
-      return res.status(400).json({message:error.message })
+      return res.status(400).json(error)
 
     }
     
@@ -24,8 +23,7 @@ class ClientController {
       const {id} = req.params
       const update = req.body
       const result = await ClientService.update(id, update)
-      console.log(result)
-      return res.status(200).json(result);
+      return res.status(200).json(serialize(result));
     } catch (error) {
       return res.status(400).json({message:error.message })
       }
@@ -43,10 +41,10 @@ class ClientController {
 async getById( req,res) {
   try {
     const{id} = req.params
-    const result = await ClientService.getById(id)
-    return res.status(200).json(result)
+    const result = await ClientService.getById(id);
+    return res.status(200).json(serialize(result));
   } catch (error) {
-    return res.status(400).json({message:error.message})
+    return res.status(400).json({message:error.message});
   }
 }
 }

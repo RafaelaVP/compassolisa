@@ -5,23 +5,31 @@ const Cars = mongoose.Schema({
     modelo: {
     type: String,
     required: true,
+    trim:true
   },
   cor: {
     type: String,
     required: true,
+    trim:true
   },
   ano: {
     type: Number,
     required: true,
   },
-  acessorios:{
-    type: Array,
-    required: true,
-    descricao:[{
-      type: String,
-      required:true
-    }]
-  },
+  acessorios: [
+    {
+      _id:{type:mongoose.Schema.ObjectId,  
+              auto:true,
+              unique:true,
+              required:true
+      },
+      descricao: {
+        type:String,
+        required:true
+      }
+    }
+    
+  ],
   quantidadePassageiros: {
     type: Number,
     required: true,
@@ -37,8 +45,4 @@ Cars.plugin(mongoosePaginate);
 module.exports = mongoose.model('cars', Cars);
 
 
-//descricao: {
-  //  type: mongoose.Schema.Types.ObjectId,
-   // ref:"descricao",
-   // required: true,
- // },
+

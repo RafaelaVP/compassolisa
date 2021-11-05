@@ -11,7 +11,8 @@ module.exports = async(req, res, next) => {
             data_nascimento:Joi.string(),
             email:Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com'] } }),
             senha:Joi.string().min(6).required(),
-            
+            habilitado: Joi.string()
+
         });
 
         const{error} = await schema.validate(req.body,{abortEarly:false});
