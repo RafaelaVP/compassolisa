@@ -31,6 +31,19 @@ class CarService {
      if(!result) throw Error("Não encontrado carro")
      return result
    }
+   async updatePa(_id, payload) {
+     const car = await this.getById(_id)  
+     if(!car) throw Error("O carro não está na base")
+    const result = await CarRepository.updateAc({_id}, payload)                              
+    return result  
+   }
+   async deletePa(_id, payload) {
+    const car = await this.getById(_id)  
+    if(!car) throw Error("O carro não está na base")
+   const result = await CarRepository.deleteAc({_id}, payload)                              
+   return result  
+  }
+   
 }
 
 module.exports = new CarService();

@@ -31,6 +31,7 @@ class Repository  {
   async getById (_id){
     return this._schema.findById(_id)
   }
+  
 }
 
 

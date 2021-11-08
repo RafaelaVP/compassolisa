@@ -8,7 +8,7 @@ class AuthService {
         const user = await AuthRepository.findByEmail(payload)
         if(user && user.senha === payload.senha && user.habilitado === "sim") {
             const payload = {email:user.email, id:user.id, habilitado:user.habilitado}
-             const token = jwt.sign(payload, secret.secret, {expiresIn:3600})
+             const token = jwt.sign(payload, secret.secret, {expiresIn:86400})
              return {token:token}
         } 
         return null

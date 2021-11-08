@@ -47,6 +47,21 @@ class CarController {
       return res.status(400).json({message:error.message})
     }
   }
+  async patchUp(req,res){
+    try {
+      const {id, idacessorio} = req.params
+      const {descricao} = req.body
+      const update = {
+         _id:idacessorio,
+        descricao
+      }
+      const result = await CarService.updatePa(id, update)
+      return res.status(201).send(result)
+    } catch (error) {
+      return res.status(400).json(error)
+    }
+  }
+  
 }
 module.exports = new CarController();
 

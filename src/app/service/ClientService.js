@@ -16,13 +16,13 @@ class ClientService {
       throw Error(" menor de idade")  
    }
    async update(_id, payload) { 
-    const car = await this.getById(_id)  
-    if(!car) throw Error("O usuário não está na base")         
+    const client = await this.getById(_id)  
+    if(!client) throw Error("O usuário não está na base")         
     return await ClientRepository.update({_id}, payload)                                 
  }
  async delete(id) {
-  const findCar = await this.getById(id)
-  if(!findCar) throw Error("Usuário não existe na base")
+  const findClient = await this.getById(id)
+  if(!findClient) throw Error("Usuário não existe na base")
    return await ClientRepository.delete(id)               
  }
  async getById(_id) {

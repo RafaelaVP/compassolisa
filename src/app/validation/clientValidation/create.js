@@ -14,11 +14,19 @@ module.exports = async(req, res, next) => {
             habilitado: Joi.string()
 
         });
-
         const{error} = await schema.validate(req.body,{abortEarly:false});
         if(error) throw error  
         return next()
     } catch (error) {
-        return res.status(400).json(error)        
+        const erros = []
+        const {details} = error
+        details.forEach(t => {
+            erros.push({
+                description: t.path[0],
+                name: t.message
+            })
+        })
+        return res.status(400).json(erros)
+                   
     }
 }
