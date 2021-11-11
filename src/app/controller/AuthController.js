@@ -4,7 +4,7 @@ class AuthController {
     async find(req, res) {
         try {
             const {email, senha} = req.body
-            const token = await AuthService.validateEmail({email, senha})
+            const token = await AuthService.validate({email, senha})
             return res.status(200).send(token)
         } catch (error) {
             return res.status(400).json({

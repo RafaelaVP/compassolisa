@@ -2,3 +2,6 @@
 package-lock.json
 .env
 .editorconfig
+.env.test
+/.vscode
+/coverage

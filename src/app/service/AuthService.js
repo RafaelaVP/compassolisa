@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const token = require('../../helper/token');
 
 class AuthService {
-    async validateEmail(payload) {
+    async validate(payload) {
         const user = await AuthRepository.findByEmail(payload)
         if(user && user.senha === payload.senha && user.habilitado === "sim") {
             const payload = {email:user.email, id:user.id, habilitado:user.habilitado}
@@ -17,9 +17,7 @@ class AuthService {
         const separa = authorization.replace('Bearer ', '')
         const resign = jwt.verify(separa, secret.secret)
         const {email, id} = resign
-    }
-  
-   
+    }   
 }
 module.exports = new AuthService();
 

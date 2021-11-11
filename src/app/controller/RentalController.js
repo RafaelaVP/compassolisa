@@ -1,10 +1,11 @@
 const RentalService = require('../service/RentalService');
+const {serialize, paginatedSerialize} = require('../serialize/rentalSerialize')
 
 class RentalController {
   async getAll(req, res) {
     try {
       const result = await RentalService.getAll(req.query)
-      return res.status(200).json(result);
+      return res.status(200).json(paginatedSerialize(result));
     } catch (error) {
       return res.status(400).json(error)
     }
@@ -14,7 +15,7 @@ class RentalController {
   async create(req, res) {
     try {
       const result = await RentalService.create(req.body);
-      return res.status(201).json(result);
+      return res.status(201).json(serialize(result));
     } catch (error) {
       return res.status(400).json(error)
 
@@ -26,7 +27,7 @@ class RentalController {
       const {id} = req.params
       const update = req.body
       const result = await RentalService.update(id, update)
-      return res.status(200).json(result);
+      return res.status(200).json(serialize(result));
     } catch (error) {
       return res.status(400).json({message:error.message })
       }
@@ -45,7 +46,7 @@ async getById( req,res) {
   try {
     const{id} = req.params
     const result = await RentalService.getById(id);
-    return res.status(200).json(result);
+    return res.status(200).json(serialize(result));
   } catch (error) {
     return res.status(400).json({message:error.message});
   }

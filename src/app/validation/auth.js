@@ -1,17 +1,17 @@
 const jwt = require ('jsonwebtoken')
 const authConfig = require('../../helper/jwt')
-const token = require('../../helper/token');
-const authorization = require('../service/AuthService')
+
 
 module.exports = (req,res, next) => {
-    const authHeader = req.headers.authorization;
-
-    if(!authHeader)
+    let token = req.headers.authorization
+     
+    if(!token)
     return res.status(401).send({error:'no token'})
+    token = token.replace('Bearer ', '')
 
     jwt.verify(token, authConfig.secret, (err,decoded) =>{
         if(err) return res.status(401).send({error:'Token invalid'});
-        req.userId= decoded.id
+        req.userId= decoded.userId
 
         return next();
     })
