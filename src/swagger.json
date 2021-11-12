@@ -1,0 +1,96 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Api Locadora de Carros",
+        "description": "Essa Api tem como objeto a construção de uma software para uma locadora de carros",
+        "termsOfService":"http://localhost:3000/terms",
+        "contact":{
+            "email":"rafavalpint@gmail.com"
+        },
+        "version":"1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/v1/people/",
+            "description":"Acesso clientes"
+        },
+        {
+            "url": "http://localhost:3000/api/v1/car/",
+            "description":"Acesso carros" 
+        },
+        {
+            "url": "http://localhost:3000/api/v1/rental/",
+            "description":"Acesso locadora"
+        }
+    ],
+    "paths":{
+        "/people/":{
+            "post":{
+                "summary": "Cadastro de clientes",
+                "description":"essa rota é responsavel por cadastrar os clientes",
+                "tags":["Clients"],
+                "requestBody":{
+                    "content":{
+                       "aplication/json" :{
+                           "schema":{
+                               "$ref":"#/components/schemas/Client"                        
+                           },
+                           "examples":{
+                               "Client":{
+                                   "value":{
+                                       "nome":"Rafaela Valerio",
+                                       "cpf":"447.735.655-27",
+                                       "data_nascimento":"11/10/1995",
+                                       "email":"rafavalpint@gmail.com",
+                                       "habilitado":"sim"
+                                   }
+                               }
+                           }
+                       }
+                    }
+                },
+                "responses":{   
+                    "400":{
+                        "description":"Client Already exists"
+                    },
+                    "200":{
+                       "description" : "ok",
+                       "content":{
+                           "aplication/json":{
+                               "schema":{
+                                   "type":"object",
+                                 "$ref":"#/components/schemas/Client"     
+                               }
+                           }
+                       }
+                    }
+
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "Client":{
+                "type":"object",
+                "properties":{
+                    "nome":{
+                        "type":"string"
+                    },
+                    "cpf":{
+                        "type":"string"
+                    },
+                    "data_nascimento":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string"
+                    },
+                    "habilitado":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+}
