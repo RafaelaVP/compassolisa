@@ -34,7 +34,8 @@ Terminar o swagger,
 Melhorar os testes, testando mais o service,
 Utilizar banco fake para os testes,
 Criar classe de erros,
-Ajustar patch do carro referente a acessorios e descrição.
+Ajustar patch do carro referente a acessorios e descrição,
+Colocar Eslint.
 
 
 
