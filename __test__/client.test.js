@@ -2,14 +2,6 @@ const request = require('supertest')
 const app = require('../src/app')
 const Client = require('../src/app/schema/schemaClient')
 
-//beforeAll(async () => {
-   // await Client.deleteMany();
-  //});
-
-//beforeEach(async () => {
-    //await Client.deleteMany();
-  //});
-
 
 describe('listar todos os clientes', () => {
     it('retornar status 200', async () => {
