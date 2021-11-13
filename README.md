@@ -91,9 +91,10 @@ $Connection to the bank was made through dotenv has been removed from the projec
 # The server will initialize in the <http://localhost:3000/v1/api>
 ```
 Improvements
+<br>
 Put encryption;
 Finish the swagger,
-Improve testing, testing the service more,
+Improve testing, testing the service more,S
 Use fake bank for testing,
 Create error class,
 Adjust car patch referring to accessories and description,
