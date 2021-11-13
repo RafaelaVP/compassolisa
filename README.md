@@ -94,7 +94,7 @@ Improvements
 <br>
 Put encryption;
 Finish the swagger,
-Improve testing, testing the service more,S
+Improve testing, testing the service more,
 Use fake bank for testing,
 Create error class,
 Adjust car patch referring to accessories and description,
