@@ -9,6 +9,11 @@
         },
         "version":"1.0.0"
     },
+    "externalDocs":{
+        "description":"Github repository",
+        "url":"https://github.com/RafaelaVP/compassolisa.git"
+    },
+
     "servers": [
         {
             "url": "http://localhost:3000/api/v1/people/",
@@ -67,6 +72,23 @@
 
                 }
             }
+        },
+        "{id}":{
+            "get":{
+                "description":"busca clientes",
+                "sumary":"buscar por id",
+                "tags":["Clients"],
+                "parameters":[
+                
+                {
+                    "_id":"_id",
+                    "in": "params",
+                    "description":"id do cliente",
+                    "required":true
+                 }
+                ] 
+            }
+
         }
     },
     "components":{
