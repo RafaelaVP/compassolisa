@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Compassolisa" />
+  
 
   &#xa0;
 
@@ -81,10 +81,7 @@ $ npm install
 
 # Run the project
 $  npm run start
-
-$npm run dev
-
-$npm run test 
+ 
 
 $Connection to the bank was made through dotenv has been removed from the project, but can be accessed in .envExample.
 
