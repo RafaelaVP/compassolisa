@@ -1,47 +1,44 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require ('mongoose-paginate-v2')
+const mongoosePaginate = require('mongoose-paginate-v2');
 
-
-const Clients = mongoose.Schema({
+const Clients = mongoose.Schema(
+  {
     nome: {
-     type: String,
-     required: true,
+      type: String,
+      required: true
     },
-    cpf:{
-     type:String,
-     required:true,
-     unique:true
+    cpf: {
+      type: String,
+      required: true,
+      unique: true
     },
-     data_nascimento:{
-     type: String,
-     required:true
+    data_nascimento: {
+      type: String,
+      required: true
     },
-    email:{
-     type:String,
-     required:true,
-     lowercase:true,
-     unique:true,
-     trim:true
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+      unique: true,
+      trim: true
     },
-    senha:{
-     type:String,
-     required:true,
-     select:false,
-     
+    senha: {
+      type: String,
+      required: true,
+      select: false
     },
-    habilitado:{
-    type:String,
-    enum:["sim","não"],
-    required:true
-
+    habilitado: {
+      type: String,
+      enum: ['sim', 'não'],
+      required: true
     }
-}, {
-  timestamps: false,
-});
-
-
+  },
+  {
+    timestamps: false
+  }
+);
 
 Clients.plugin(mongoosePaginate);
 
-
-module.exports = mongoose.model('user',Clients);
+module.exports = mongoose.model('user', Clients);

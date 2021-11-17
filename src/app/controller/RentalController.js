@@ -1,15 +1,14 @@
 const RentalService = require('../service/RentalService');
-const {serialize, paginatedSerialize} = require('../serialize/rentalSerialize')
+const { serialize, paginatedSerialize } = require('../serialize/rentalSerialize');
 
 class RentalController {
   async getAll(req, res) {
     try {
-      const result = await RentalService.getAll(req.query)
+      const result = await RentalService.getAll(req.query);
       return res.status(200).json(paginatedSerialize(result));
     } catch (error) {
-      return res.status(400).json(error)
+      return res.status(400).json(error);
     }
-    
   }
 
   async create(req, res) {
@@ -17,40 +16,40 @@ class RentalController {
       const result = await RentalService.create(req.body);
       return res.status(201).json(serialize(result));
     } catch (error) {
-      return res.status(400).json(error)
-
+      return res.status(400).json(error);
     }
-    
   }
+
   async update(req, res) {
     try {
-      const {id} = req.params
-      const update = req.body
-      const result = await RentalService.update(id, update)
+      const { id } = req.params;
+      const update = req.body;
+      const result = await RentalService.update(id, update);
       return res.status(200).json(serialize(result));
     } catch (error) {
-      return res.status(400).json({message:error.message })
-      }
-     
- }    
- async delete(req, res) {
-  try {
-     const {id} = req.params
-     const result = await RentalService.delete(id);
-    return res.status(204).json(result);
-  } catch (error) {
-      return res.status(404).json({message: error.message})
+      return res.status(400).json({ message: error.message });
+    }
   }
-}
-async getById( req,res) {
-  try {
-    const{id} = req.params
-    const result = await RentalService.getById(id);
-    return res.status(200).json(serialize(result));
-  } catch (error) {
-    return res.status(400).json({message:error.message});
+
+  async delete(req, res) {
+    try {
+      const { id } = req.params;
+      const result = await RentalService.delete(id);
+      return res.status(204).json(result);
+    } catch (error) {
+      return res.status(404).json({ message: error.message });
+    }
   }
-}
+
+  async getById(req, res) {
+    try {
+      const { id } = req.params;
+      const result = await RentalService.getById(id);
+      return res.status(200).json(serialize(result));
+    } catch (error) {
+      return res.status(400).json({ message: error.message });
+    }
+  }
 }
 
-module.exports = new RentalController;
+module.exports = new RentalController();

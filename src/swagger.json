@@ -1,118 +1,490 @@
 {
-    "openapi": "3.0.0",
-    "info":{
-        "title": "Api Locadora de Carros",
-        "description": "Essa Api tem como objeto a construção de uma software para uma locadora de carros",
-        "termsOfService":"http://localhost:3000/terms",
-        "contact":{
-            "email":"rafavalpint@gmail.com"
-        },
-        "version":"1.0.0"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api Locadora de Carros",
+    "description": "Essa Api tem como objeto a construção de uma software para uma locadora de carros.",
+    "termsOfService": "http://localhost:3000/terms",
+    "contact": {
+      "email": "rafavalpint@gmail.com"
     },
-    "externalDocs":{
-        "description":"Github repository",
-        "url":"https://github.com/RafaelaVP/compassolisa.git"
-    },
-
-    "servers": [
-        {
-            "url": "http://localhost:3000/api/v1/people/",
-            "description":"Acesso clientes"
-        },
-        {
-            "url": "http://localhost:3000/api/v1/car/",
-            "description":"Acesso carros" 
-        },
-        {
-            "url": "http://localhost:3000/api/v1/rental/",
-            "description":"Acesso locadora"
-        }
-    ],
-    "paths":{
-        "/people/":{
-            "post":{
-                "summary": "Cadastro de clientes",
-                "description":"essa rota é responsavel por cadastrar os clientes",
-                "tags":["Clients"],
-                "requestBody":{
-                    "content":{
-                       "aplication/json" :{
-                           "schema":{
-                               "$ref":"#/components/schemas/Client"                        
-                           },
-                           "examples":{
-                               "Client":{
-                                   "value":{
-                                       "nome":"Rafaela Valerio",
-                                       "cpf":"447.735.655-27",
-                                       "data_nascimento":"11/10/1995",
-                                       "email":"rafavalpint@gmail.com",
-                                       "habilitado":"sim"
-                                   }
-                               }
-                           }
-                       }
-                    }
-                },
-                "responses":{   
-                    "400":{
-                        "description":"Client Already exists"
-                    },
-                    "200":{
-                       "description" : "ok",
-                       "content":{
-                           "aplication/json":{
-                               "schema":{
-                                   "type":"object",
-                                 "$ref":"#/components/schemas/Client"     
-                               }
-                           }
-                       }
-                    }
-
-                }
-            }
-        },
-        "{id}":{
-            "get":{
-                "description":"busca clientes",
-                "sumary":"buscar por id",
-                "tags":["Clients"],
-                "parameters":[
-                
-                {
-                    "_id":"_id",
-                    "in": "params",
-                    "description":"id do cliente",
-                    "required":true
-                 }
-                ] 
-            }
-
-        }
-    },
-    "components":{
-        "schemas":{
-            "Client":{
-                "type":"object",
-                "properties":{
-                    "nome":{
-                        "type":"string"
-                    },
-                    "cpf":{
-                        "type":"string"
-                    },
-                    "data_nascimento":{
-                        "type":"string"
-                    },
-                    "email":{
-                        "type":"string"
-                    },
-                    "habilitado":{
-                        "type":"string"
-                    }
-                }
-            }
-        }
+    "version": "0.0.1"
+  },
+  "externalDocs": {
+    "description": "Github repository",
+    "url": "https://github.com/RafaelaVP/compassolisa.git"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1/",
+      "description": "API"
     }
+  ],
+  "paths": {
+    "/people": {
+      "get": {
+        "summary": "Busca todos os clientes",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Clients"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo cliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientCreate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/people/{id}": {
+      "get": {
+        "summary": "Busca pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encontrado cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Clients"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado cliente.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza dados do cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Clients"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado cliente.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Clients"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado cliente.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/": {
+      "get": {
+        "summary": "Busca todos os carros",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cars"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo carro",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/carCreate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/{id}": {
+      "get": {
+        "summary": "Busca pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encontrado cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cars"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado carro.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza dados do carro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cars"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado cliente.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um carro",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cars"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado carro.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/car/{idCar}/acessorios/{idacessorio}": {
+      "patch": {
+        "summary": "Atualiza dados um acessorio",
+        "parameters": [
+          {
+            "name": "idCar",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {           
+             "name": "idacessorio",
+             "in":"path",
+             "schema":{
+               "type":"string"
+             },
+             "required":true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/carCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cars"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado cliente.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Clients": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "data_nascimento": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "habilitado": {
+            "type": "string"
+          }
+        }
+      },
+      "clientCreate": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "data_nascimento": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "habilitado": {
+            "type": "string"
+          }
+        }
+      },
+      "Cars": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "cor": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "string"
+          },
+          "acessorios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descricao": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "quantidadePassageiros": {
+            "type": "number"
+          }
+        }
+      },
+      "carCreate": {
+        "type": "object",
+        "properties": {
+          "modelo": {
+            "type": "string"
+          },
+          "cor": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "string"
+          },
+          "acessorios": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descricao": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "quantidadePassageiros": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
 }

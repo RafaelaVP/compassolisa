@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const car = require('./carRouter')
-const client = require('./clientRouter')
-const auth = require('./authRouter')
-const rental = require('./rentalRouter')
-const swagger = require('./swaggerRoute')
+const car = require('./carRouter');
+const client = require('./clientRouter');
+const auth = require('./authRouter');
+const rental = require('./rentalRouter');
+const swagger = require('./swaggerRoute');
 
-module.exports = server => {
+module.exports = (server) => {
   server.use((req, res, next) => {
     car(server, new Router());
     client(server, new Router());
@@ -14,4 +14,4 @@ module.exports = server => {
     swagger(server, new Router());
     next();
   });
-}
+};

@@ -7,10 +7,12 @@ class Connection {
   }
 
   async dataBaseConnectionMongoDB() {
-    this.mongoDBConnection = await mongoose.connect(process.env.DATABASE)
+    this.mongoDBConnection = await mongoose
+      .connect(process.env.DATABASE)
       .then(() => {
         console.log('Connected to MongoDB');
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(`Connection failed to MongoDB error: ${error}`);
       });
   }
