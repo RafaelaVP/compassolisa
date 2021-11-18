@@ -20,7 +20,6 @@ module.exports = async (req, res, next) => {
     return res.status(400).json(
       error.details.map((detail) => ({
         description: detail.message,
-
         name: detail.path.join('.')
       }))
     );

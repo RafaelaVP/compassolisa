@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+const bcrypt = require('bcryptjs');
 
 const Clients = mongoose.Schema(
   {
@@ -38,6 +39,13 @@ const Clients = mongoose.Schema(
     timestamps: false
   }
 );
+
+Clients.pre('save', async function encrypted(next) {
+  const hash = await bcrypt.hash(this.senha, 10);
+  this.senha = hash;
+
+  next();
+});
 
 Clients.plugin(mongoosePaginate);
 

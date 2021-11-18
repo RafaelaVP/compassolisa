@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const schemaCar = require('../schema/schemaCar');
 const Repository = require('./Repository');
 
@@ -9,7 +8,7 @@ class CarRepository extends Repository {
 
   async updateAc(_id, payload) {
     return this._schema.findOneAndUpdate(
-      { _id, 'acessorios._id': ObjectId(payload._id) },
+      { _id, 'acessorios._id': payload._id },
       {
         $set: {
           'acessorios.$.descricao': payload.descricao

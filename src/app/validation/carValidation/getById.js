@@ -3,7 +3,7 @@ const Joi = require('joi');
 module.exports = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      id: Joi.string().min(24).max(24).pattern(new '^[a-fA-F0-9]'())
+      id: Joi.string().min(24).max(24).pattern('^[a-fA-F0-9]')
     });
 
     const { error } = await schema.validate(req.params, { abortEarly: false });
