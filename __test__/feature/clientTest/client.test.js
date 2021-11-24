@@ -1,17 +1,11 @@
 const request = require('supertest');
-const app = require('../../src/app');
+const app = require('../../../src/app');
+const { ClientDataFaker } = require('../support/dataFaker/clientDataFaker');
 
-describe('listar todos os clientes', () => {
+describe.only('listar todos os clientes', () => {
   it('retornar status 200', async () => {
     jest.setTimeout(10000);
-    const clientMock = {
-      nome: 'Rafaela Valerio',
-      cpf: '035.891.820-08',
-      data_nascimento: '11/10/1995',
-      email: 'rafa@gmail.com',
-      senha: '123456',
-      habilitado: 'sim'
-    };
+    const clientMock = ClientDataFaker();
 
     await request(app).post('/api/v1/people/').send(clientMock);
 

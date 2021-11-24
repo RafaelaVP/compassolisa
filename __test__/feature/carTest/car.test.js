@@ -1,4 +1,4 @@
-const CarService = require('../../src/app/service/CarService');
+const CarService = require('../../../src/app/service/CarService');
 
 describe('listar todos os carros e criar carros', () => {
   it('Cria carros e lista carros', async () => {
