@@ -10,15 +10,15 @@ module.exports = async (req, res, next) => {
         .unique()
         .min(1)
         .items({
-          cep: Joi.string().min(1).required(),
-          logradouro: Joi.string().min(1).required(),
+          cep: Joi.string().min(1),
+          logradouro: Joi.string().min(1),
           complemento: Joi.string().min(1),
-          bairro: Joi.string().min(1).required(),
-          number: Joi.string().min(1).required(),
-          localidade: Joi.string().min(1).required(),
-          uf: Joi.string().min(1).required()
+          bairro: Joi.string().min(1),
+          number: Joi.string().min(1),
+          localidade: Joi.string().min(1),
+          uf: Joi.string().min(1),
+          isFilial: Joi.boolean()
         })
-        .required()
     });
 
     const { error } = await schema.validate(req.body, { abortEarly: false });
@@ -28,7 +28,6 @@ module.exports = async (req, res, next) => {
     return res.status(400).json(
       error.details.map((detail) => ({
         description: detail.message,
-
         name: detail.path.join('.')
       }))
     );

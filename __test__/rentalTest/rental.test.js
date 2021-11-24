@@ -1,5 +1,5 @@
-const Rental = require('../src/app/schema/schemaRentalCompany');
-const RentalService = require('../src/app/service/RentalService');
+const Rental = require('../../src/app/schema/schemaRentalCompany');
+const RentalService = require('../../src/app/service/RentalService');
 
 beforeAll(async () => {
   await Rental.deleteMany();

@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/app');
+const app = require('../../src/app');
 
 describe('listar todos os clientes', () => {
   it('retornar status 200', async () => {
