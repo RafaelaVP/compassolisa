@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../../../src/app');
-const { ClientDataFaker } = require('../support/dataFaker/clientDataFaker');
+const { ClientDataFaker } = require('../../support/dataFaker');
 
 describe.only('listar todos os clientes', () => {
   it('retornar status 200', async () => {
