@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const car = require('./carRouter');
-const client = require('./clientRouter');
+const client = require('./userRouter');
 const auth = require('./authRouter');
 const rental = require('./rentalRouter');
 const swagger = require('./swaggerRoute');
