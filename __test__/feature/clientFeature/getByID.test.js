@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../../src/app');
 
-describe('listar todos os clientes', () => {
+describe('listar client pelo id', () => {
   it('retornar status 200', async () => {
     jest.setTimeout(20000);
     const clientMock = {
