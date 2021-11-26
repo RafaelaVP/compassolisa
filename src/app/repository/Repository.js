@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-throw-literal */
-const validateType = require('../../helper/getAll');
 
 class Repository {
   constructor(schema) {
@@ -9,11 +8,14 @@ class Repository {
 
   async findByParams(search) {
     const { limit = 100, offset = 0, ...query } = search;
-    const data = validateType(query);
-    return this._schema.paginate(data, {
-      limit,
-      offset
-    });
+    return this._schema.paginate(
+      { ...query },
+
+      {
+        limit,
+        offset
+      }
+    );
   }
 
   async create(payload) {
