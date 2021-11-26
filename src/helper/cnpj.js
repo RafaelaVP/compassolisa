@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 function validarCNPJ(cnpj) {
-  const Cnpj = cnpj.replace(/[^\d]+/g, '');
+  const Cnpj = cnpj.replace(/[.\-/]/g, '');
 
   if (
     Cnpj === '00000000000000' ||
@@ -19,9 +19,9 @@ function validarCNPJ(cnpj) {
       name: `Invalid CNPJ ${cnpj}`
     });
 
-  let tamanho = cnpj.length - 2;
-  let numeros = cnpj.substring(0, tamanho);
-  const digitos = cnpj.substring(tamanho);
+  let tamanho = Cnpj.length - 2;
+  let numeros = Cnpj.substring(0, tamanho);
+  const digitos = Cnpj.substring(tamanho);
   let soma = 0;
   let pos = tamanho - 7;
   let i;
@@ -37,7 +37,7 @@ function validarCNPJ(cnpj) {
     });
 
   tamanho += 1;
-  numeros = cnpj.substring(0, tamanho);
+  numeros = Cnpj.substring(0, tamanho);
   soma = 0;
   pos = tamanho - 7;
   for (i = tamanho; i >= 1; i--) {
@@ -50,8 +50,6 @@ function validarCNPJ(cnpj) {
       description: 'Bad Request',
       name: `Invalid cnpj ${cnpj}`
     });
-  const trueCnpj = cnpj.replace(/(\d{3})?(\d{3})?(\d{3})?(\d{2})/, '$1.$2.$3-$4');
-  return trueCnpj;
 }
 
 module.exports = validarCNPJ;

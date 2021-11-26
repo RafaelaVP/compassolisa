@@ -1,16 +1,10 @@
-const Rental = require('../../../src/app/schema/schemaRentalCompany');
 const RentalService = require('../../../src/app/service/RentalService');
-
-beforeAll(async () => {
-  await Rental.deleteMany();
-});
 
 describe('listar todas as locadoras', () => {
   it('cria uma nova locadora e lista as locadoras', async () => {
-    jest.setTimeout(10000);
     const rentalMock = {
       nome: 'Localiza Rent a Car',
-      cnpj: '64.646.687/0001-10',
+      cnpj: '94.228.623/0001-60',
       atividades: 'vender',
       endereco: [
         {

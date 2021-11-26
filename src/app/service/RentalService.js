@@ -29,8 +29,8 @@ class RentalService {
     }
 
     payload.endereco = enderecos;
-    const Valid = validarCNPJ(payload.cnpj);
-    payload.cnpj = Valid;
+    validarCNPJ(payload.cnpj);
+
     return RentalRepository.create(payload);
   }
 

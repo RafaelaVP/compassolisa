@@ -8,8 +8,7 @@ class ClientService {
   }
 
   async create(payload) {
-    const Valid = cpfValid(payload.cpf);
-    payload.cpf = Valid;
+    cpfValid(payload.cpf);
     const date = this.validDataNascimento(payload.data_nascimento);
     if (typeof date !== 'undefined') {
       return ClientRepository.create(payload);

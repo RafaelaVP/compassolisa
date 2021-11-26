@@ -1,5 +1,5 @@
 function validCPF(cpf) {
-  const Cpf = cpf.replace(/[^\d]+/g, '');
+  const Cpf = cpf.replace(/[.-]/g, '');
   if (
     Cpf.length !== 11 ||
     Cpf === '00000000000' ||
@@ -21,26 +21,24 @@ function validCPF(cpf) {
   let add = 0;
   let i;
   let rev;
-  for (i = 0; i < 9; i++) add += parseInt(cpf.charAt(i), 10) * (10 - i);
+  for (i = 0; i < 9; i++) add += parseInt(Cpf.charAt(i), 10) * (10 - i);
   rev = 11 - (add % 11);
   if (rev === 10 || rev === 11) rev = 0;
-  if (rev !== parseInt(cpf.charAt(9), 10))
+  if (rev !== parseInt(Cpf.charAt(9), 10))
     throw new Error({
       description: 'Bad Request',
       name: `Invalid CPF ${cpf}`
     });
 
   add = 0;
-  for (i = 0; i < 10; i++) add += parseInt(cpf.charAt(i), 10) * (11 - i);
+  for (i = 0; i < 10; i++) add += parseInt(Cpf.charAt(i), 10) * (11 - i);
   rev = 11 - (add % 11);
   if (rev === 10 || rev === 11) rev = 0;
-  if (rev !== parseInt(cpf.charAt(10), 10))
+  if (rev !== parseInt(Cpf.charAt(10), 10))
     throw new Error({
       description: 'Bad Request',
       name: `Invalid CPF ${cpf}`
     });
-  const trueCpf = cpf.replace(/(\d{3})?(\d{3})?(\d{3})?(\d{2})/, '$1.$2.$3-$4');
-  return trueCpf;
 }
 
 module.exports = validCPF;
