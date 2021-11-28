@@ -191,7 +191,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "post": {
         "summary": "Cria um novo carro",
@@ -215,7 +220,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     },
     "/car/{id}": {
@@ -250,7 +260,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "put": {
         "summary": "Atualiza dados do carro",
@@ -292,7 +307,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       },
       "delete": {
         "summary": "Deleta um carro",
@@ -325,7 +345,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ]
       }
     },
     "/car/{idCar}/acessorios/{idacessorio}": {
@@ -340,13 +365,13 @@
             },
             "required": true
           },
-          {           
-             "name": "idacessorio",
-             "in":"path",
-             "schema":{
-               "type":"string"
-             },
-             "required":true
+          {
+            "name": "idacessorio",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
           }
         ],
         "requestBody": {
@@ -374,6 +399,32 @@
             "content": {
               "application/json": {
                 "example": "Not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/authenticate/login": {
+      "post": {
+        "summary": "Cria um novo cliente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Auth"
+                }
               }
             }
           }
@@ -484,6 +535,23 @@
             "type": "number"
           }
         }
+      },
+      "Auth": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "senha": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "auth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
