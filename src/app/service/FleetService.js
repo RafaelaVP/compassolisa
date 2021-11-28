@@ -21,6 +21,8 @@ class FleetService {
     }
 
     const result = await FleetRepository.create(payload);
+    console.log(result);
+
     return result;
   }
 

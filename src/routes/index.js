@@ -5,6 +5,7 @@ const auth = require('./authRouter');
 const rental = require('./rentalRouter');
 const swagger = require('./swaggerRoute');
 const fleet = require('./fleetRouter');
+const reserve = require('./reserveRouter');
 
 module.exports = (server) => {
   server.use((req, res, next) => {
@@ -13,6 +14,7 @@ module.exports = (server) => {
     auth(server, new Router());
     rental(server, new Router());
     fleet(server, new Router());
+    reserve(server, new Router());
     swagger(server, new Router());
     next();
   });

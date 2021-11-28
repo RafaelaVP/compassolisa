@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const Reserves = mongoose.Schema(
   {
@@ -24,11 +25,15 @@ const Reserves = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Cars',
       required: true
+    },
+    valor_final: {
+      type: Number,
+      required: true
     }
   },
   {
     timestamps: true
   }
 );
-
+Reserves.plugin(mongoosePaginate);
 module.exports = mongoose.model('reserve', Reserves);
