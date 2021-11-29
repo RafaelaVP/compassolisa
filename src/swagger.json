@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Api Locadora de Carros",
-    "description": "Essa Api tem como objeto a construção de uma software para uma locadora de carros.",
+    "description": "Essa Api tem como objetivo a construção de uma software para uma locadora de carros.",
     "termsOfService": "http://localhost:3000/terms",
     "contact": {
       "email": "rafavalpint@gmail.com"
@@ -407,7 +407,7 @@
     },
     "/authenticate/login": {
       "post": {
-        "summary": "Cria um novo cliente",
+        "summary": "Login",
         "requestBody": {
           "content": {
             "application/json": {
@@ -425,6 +425,160 @@
                 "schema": {
                   "$ref": "#/components/schemas/Auth"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental": {
+      "get": {
+        "summary": "Busca todas as locadoras",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rental"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria uma nova locadora",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rentalCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rentalCreate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rental/{id}": {
+      "get": {
+        "summary": "Busca pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Encontrado cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado locadora.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza dados da locadora",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rentalCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado locadora.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta uma locadora",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rental"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrado locadora.",
+            "content": {
+              "application/json": {
+                "example": "Not found"
               }
             }
           }
@@ -544,6 +698,101 @@
           },
           "senha": {
             "type": "string"
+          }
+        }
+      },
+      "Rental": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string"
+          },
+          "atividades": {
+            "type": "string"
+          },
+          "endereco": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cep": {
+                  "type": "string"
+                },
+                "logradouro": {
+                  "type": "string"
+                },
+                "complemento": {
+                  "type": "string"
+                },
+                "bairro": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "localidade": {
+                  "type": "string"
+                },
+                "uf": {
+                  "type": "string"
+                },
+                "ifFilial": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "rentalCreate": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string"
+          },
+          "atividades": {
+            "type": "string"
+          },
+          "endereco": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cep": {
+                  "type": "string"
+                },
+                "logradouro": {
+                  "type": "string"
+                },
+                "complemento": {
+                  "type": "string"
+                },
+                "bairro": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "string"
+                },
+                "localidade": {
+                  "type": "string"
+                },
+                "uf": {
+                  "type": "string"
+                },
+                "ifFilial": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

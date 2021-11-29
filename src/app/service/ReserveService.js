@@ -18,7 +18,7 @@ class ReserveService {
     const user = await ClientRepository.getById(id_user);
     if (!user) throw new Error();
     const result = await ReserveRepository.create(payload);
-    console.log(result);
+
     return result;
   }
 
