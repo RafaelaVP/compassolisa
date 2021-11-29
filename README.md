@@ -95,8 +95,11 @@ Finish the swagger,
 Improve testing, testing the service more,
 Create error class,
 Adjust car patch referring to accessories and description.
+Add fleet and reserve swagger,
+Add validation fleet and reserve.
 
 Acess
+<br>
 Swagger: http://localhost:3000/api/v1/api-docs/
 <br>
 Heroku: https://backend-compass.herokuapp.com/api/v1/api-docs/
