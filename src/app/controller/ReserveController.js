@@ -9,8 +9,9 @@ class ReserveController {
 
   async create(req, res) {
     try {
-      const { _id } = req.params;
-      const result = await ReserveService.create(_id, req.body);
+      const { idRental } = req.params;
+
+      const result = await ReserveService.create(idRental, req.body);
       return res.status(201).json(serialize(result));
     } catch (error) {
       return res.status(400).json({ description: error.description, name: error.message });

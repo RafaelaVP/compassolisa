@@ -13,8 +13,8 @@ module.exports = (server) => {
     client(server, new Router());
     auth(server, new Router());
     rental(server, new Router());
-    fleet(server, new Router());
-    reserve(server, new Router());
+    fleet(server, new Router({ mergeParams: true }));
+    reserve(server, new Router({ mergeParams: true }));
     swagger(server, new Router());
     next();
   });

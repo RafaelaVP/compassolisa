@@ -1,7 +1,8 @@
 const ReserveRepository = require('../repository/ReserveRepository');
 const RentalRepository = require('../repository/RentalRepository');
-const CarRepository = require('../repository/CarRepository');
 const ClientRepository = require('../repository/ClientRepository');
+const FleetRepository = require('../repository/FleetRepository');
+const toDate = require('../../helper/toDate');
 
 class ReserveService {
   async getAll(search) {
@@ -10,13 +11,20 @@ class ReserveService {
   }
 
   async create(_id, payload) {
-    const { id_locadora, id_carro, id_user } = payload;
-    const rental = await RentalRepository.getById(id_locadora);
-    if (!rental) throw new Error();
-    const car = await CarRepository.getById(id_carro);
-    if (!car) throw new Error();
+    payload.data_inicio = toDate(payload.data_inicio);
+    payload.data_fim = toDate(payload.data_fim);
+    const { id_carro, id_user, data_fim, data_inicio } = payload;
+    payload.id_locadora = _id;
+    const rental = await RentalRepository.getById(_id);
+    if (!rental) throw new Error('esse');
+    const fleet = await FleetRepository.getById(id_carro);
+    if (!fleet) throw new Error('não');
     const user = await ClientRepository.getById(id_user);
-    if (!user) throw new Error();
+    if (!user) throw new Error('ou esse');
+    if (user.habilitado !== 'sim') throw new Error('não é habilitado');
+
+    const check = await ReserveRepository.getReserveByFleetAndRental(_id, id_carro, data_inicio, data_fim);
+    if (!check) throw new Error();
     const result = await ReserveRepository.create(payload);
 
     return result;

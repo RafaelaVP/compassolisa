@@ -9,11 +9,11 @@ const Reserves = mongoose.Schema(
       required: true
     },
     data_inicio: {
-      type: String,
+      type: Date,
       required: true
     },
     data_fim: {
-      type: String,
+      type: Date,
       required: true
     },
     id_locadora: {

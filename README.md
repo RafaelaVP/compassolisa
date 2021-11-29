@@ -53,6 +53,7 @@ The api was developed to rent a car!
 :Create Cars, search for cars;\
 :Create clients, search client, authentication 2;\
 :Create the rental company, search the rental companies and their branches 3;
+:Create fleet and Reserve
 
 ## :rocket: Technologies ##
 
@@ -62,6 +63,7 @@ The following tools were used in this project:
 - [MongoDb](https://docs.mongodb.com/)
 - [Swagger](https://swagger.io/docs/)
 - [Jest](https://jestjs.io/docs/getting-started)
+- [Heroku](https://backend-compass.herokuapp.com/api/v1/api-docs/)
 
 ## :white_check_mark: Requirements ##
 
@@ -89,13 +91,16 @@ $Connection to the bank was made through dotenv has been removed from the projec
 ```
 Improvements
 <br>
-Put encryption;
 Finish the swagger,
 Improve testing, testing the service more,
-Use fake bank for testing,
 Create error class,
-Adjust car patch referring to accessories and description,
-Place Eslint.
+Adjust car patch referring to accessories and description.
+
+Acess
+Swagger: http://localhost:3000/api/v1/api-docs/
+<br>
+Heroku: https://backend-compass.herokuapp.com/api/v1/api-docs/
+
 
 Made with :heart: by <a href="https://github.com/RafaelaVP" target="_blank">{{Rafaela Valerio}}</a>
 
